@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import useAuth from '../lib/auth';
+import { useAuth } from '../lib/auth';
 
 export default function Home() {
   const auth = useAuth();
@@ -16,15 +16,12 @@ export default function Home() {
         <h1 className={styles.title}>
           Fast Feedback
         </h1>
-
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
         </p>
-
-        <button onClick={e => auth.signInWithGithub()}>Sign In</button>
-
-        <h2>{auth?.user}</h2>
+        <button onClick={() => auth.signInWithGithub()}>Sign In</button>
+        {auth?.user && <h2>{auth.user}</h2>}
       </main>
 
       <footer className={styles.footer}>
